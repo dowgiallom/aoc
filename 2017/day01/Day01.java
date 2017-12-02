@@ -13,18 +13,14 @@ class CaptchaSolver {
             return result;
         }
 
-        if (length == 1) {
-            return nums[0];
-        }
-
-        for (int i = 0; i < nums.length - 1; i++) {
+        for (int i = 0; i < length - 1; i++) {
             if (nums[i] == nums[i + 1]) {
                 result += nums[i];
             }
         }
 
-        if (nums[nums.length - 1] == nums[0]) {
-            result += nums[nums.length - 1];
+        if (nums[length - 1] == nums[0]) {
+            result += nums[length - 1];
         }
 
         return result;
