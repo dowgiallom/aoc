@@ -1,16 +1,16 @@
 class CaptchaSolver {
 
     int solve(String input) {
-        int[] nums = new int[input.length()];
-        for (int i = 0; i < input.length(); i++){
-            nums[i] = input.charAt(i) - '0';
-        }
-
-        int length = nums.length;
         int result = 0;
+        int length = input.length();
+        int[] nums = new int[length];
 
         if (length == 0) {
             return result;
+        }
+
+        for (int i = 0; i < input.length(); i++){
+            nums[i] = input.charAt(i) - '0';
         }
 
         for (int i = 0; i < length - 1; i++) {

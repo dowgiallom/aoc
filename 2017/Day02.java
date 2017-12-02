@@ -1,16 +1,17 @@
-import java.util.OptionalInt;
 import java.util.stream.IntStream;
 
 class ChecksumCounter {
 
     int count(int[][] input) {
         int result = 0;
-        for (int[] innerTab : input) {
-            OptionalInt maybeMax = IntStream.of(innerTab).max();
-            OptionalInt maybeMin = IntStream.of(innerTab).min();
+        for (int[] row : input) {
+            int max = IntStream.of(row)
+                    .max()
+                    .orElseThrow(() -> new RuntimeException("empty stream"));
 
-            int max = maybeMax.orElseThrow(() -> new RuntimeException("empty stream"));
-            int min = maybeMin.orElseThrow(() -> new RuntimeException("empty stream"));
+            int min = IntStream.of(row)
+                    .min()
+                    .orElseThrow(() -> new RuntimeException("empty stream"));
 
             int diff = max - min;
             result += diff;
