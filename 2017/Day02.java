@@ -2,7 +2,7 @@ import java.util.stream.IntStream;
 
 class ChecksumCounter {
 
-    int count(int[][] input) {
+    int countPart1(int[][] input) {
         int result = 0;
         for (int[] row : input) {
             int max = IntStream.of(row)
@@ -15,6 +15,24 @@ class ChecksumCounter {
 
             int diff = max - min;
             result += diff;
+        }
+        return result;
+    }
+
+    int countPart2(int[][] input) {
+        int result = 0;
+        for (int[] row : input) {
+            for (int i = 0; i < row.length; i++) {
+                for (int y = 0; y < row.length; y++) {
+                    if (i == y) {
+                        continue;
+                    }
+
+                    if (row[i] % row[y] == 0) {
+                        result += row[i] / row[y];
+                    }
+                }
+            }
         }
         return result;
     }
@@ -44,7 +62,10 @@ class ChecksumExamples {
         ChecksumCounter counter = new ChecksumCounter();
 
         System.out.println("Puzzle result is:");
-        System.out.println(counter.count(INPUT));
+        System.out.println(counter.countPart1(INPUT));
+
+        System.out.println("Puzzle result for part 2 is:");
+        System.out.println(counter.countPart2(INPUT));
     }
 
 
